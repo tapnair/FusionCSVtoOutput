@@ -1,79 +1,55 @@
-# Fusion360AddinSkeleton
-Framework to simplify the creation of Fusion 360 Addin
+# Fusion360 CSV to Output
+Use a csv file to update model parameters.
 
-Documentation to come later. For now:
+Output either:
+* 3D geometry as neutral or f3d format
+* G-Code if your model has a valid CAM setup in it
+
+![fusiontocsv Cover](./resources/fusiontocsv_cover.png)
+
+# Installation
+[Click here to download the Add-in](https://github.com/tapnair/ventMaker/archive/master.zip)
+
+
+After downloading the zip file follow the [installation instructions here](https://tapnair.github.io/installation.html) for your particular OS version of Fusion 360
 
 
 
 # Usage
-Files in the Fusion360Utilities folder should not be modified.
+Documentation to come later. For now:
+ - Create a Fusion 360 model
+ - Use "User Defined" parameters to build your model
+ - Create a csv file with the first line containing the names of your parameters
+ - Subsequent lines should have the values for the corresponding variable
+ - Run FusionCSVto3DOutput to generate 3D models for every configuration in the csv file
+ - Run FusionCSVtoGCode to generate g-code for each configuration based on a given setup name and post name
 
-Rename the following items to your desired addin name: 
-* Fusion360AddinSkeleton.py 
-* The top level folder
-* Fusion360AddinSkeleton.manifest
+### Outputing G-Code
+ - The setup name needs to match a setup in your CAM environment
+ - The post should be a post in your default directory.
+ - _Some modifications would need to be made to use a post from a different location_
 
-## Step 1 
-Open the newly renamed python file
+![Output G-Code](./resources/readme_2.png)
 
-The current file will create two commands in the Fusion 360 UI in the Addins Drop Down
+### Fusion model Parameters
+ - Create "User Parameters" in Modify/Change Parameters
+ - In your sketch dimensions and features reference these names
+ - These parameter names must match the names in the csv file header row
 
-Change the names and description strings here to your desired naming conventions
+![User Parameters](./resources/readme_3.png)
 
-Currently each command relies on a separate file called Demo1Command.py and demo2Command.py
+![User Parameters Sketch](./resources/readme_4.png)
 
-If you want to rename the files that define the names of the commands you must do it for each one in 3 places:
-
-![Rename Command](./resources/rename_command.png)
-
-
-## Step 2
-
-Edit Demo1Command.py and add functionality to the desired methods.  
-
-onCreate: Build your UI components here
-
-onExecute: Will be executed when user selects OK in command dialog.
-
-DemoCommand1 creates a very basic UI and then accesses the input parameters.
-
-###Some helpful extras:
-
-_input_values_
-
-In the on_execute, on_preview, on_input_changed methods there is a parameter called "input_values"
-
-This parameter is a dictionary containing the relevant values for all of the user inputs.
-
-The key is the name of the input.
-
-The value is dependant on the type input:
-* Value type inputs will have their actual value stored (string or number depending)
-* List type inputs (drop downs, etc) will have the name of the selected item as the value (string)
-* Selection inputs regardless of whether they contain one or more selections will be returned as an array of the selected objects
-
-_Note: you can still access the raw command inputs object with the "inputs" variable.  This would behave similar to any of the examples in the API documentation._
+![User Parameters CSV](./resources/readme_5.png)
 
 
+## License
+Samples are licensed under the terms of the [MIT License](http://opensource.org/licenses/MIT). Please see the [LICENSE](LICENSE) file for full details.
 
-_get_app_objects_
+## Written by
 
-This is a helper function that returns a dictionary of many useful fusion 360 application objects.
+Written by [Patrick Rainsberry](https://twitter.com/prrainsberry) <br /> (Autodesk Fusion 360 Business Development)
 
-This is the format of the returned dictionary:
-'''
-app_objects = {
-        'app': app,
-        'design': design,
-        'import_manager': import_manager,
-        'ui': ui,
-        'units_manager': units_manager,
-        'all_occurrences': all_occurrences,
-        'all_components': all_components,
-        'root_comp': root_comp,
-        'time_line': time_line,
-        'export_manager': export_manager,
-        'document': document
-    }
-'''
+See more useful add-ins [Fusion 360 Utilities](https://tapnair.github.io/index.html)
 
+[![Analytics](https://ga-beacon.appspot.com/UA-41076924-3/fusiontooutput)](https://github.com/igrigorik/ga-beacon)
