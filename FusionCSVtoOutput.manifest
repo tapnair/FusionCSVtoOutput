@@ -1,0 +1,13 @@
+{
+	"autodeskProduct":	"Fusion360",
+	"type":	"addin",
+	"id":	"400989a1-2a3f-4137-ae9f-f4f4b296f432",
+	"author":	"Patrick Rainsberry",
+	"description":	{
+		"":	"Output various items based on a csv input."
+	},
+	"version":	"1.0",
+	"runOnStartup":	false,
+	"supportedOS":	"windows|mac",
+	"editEnabled":	true
+}
